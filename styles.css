@@ -35,4 +35,6 @@ body {
 
 .display {
     border: 2px solid black;
+    width: 96%;
+    height: 90%;
 }
