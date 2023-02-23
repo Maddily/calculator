@@ -21,3 +21,9 @@ body {
     width: 43rem;
     height: 45rem;
 }
+
+.display-background {
+    border: 2px solid black;
+    width: 85%;
+    height: 6rem;
+}
