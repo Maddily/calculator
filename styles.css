@@ -21,6 +21,9 @@ body {
     width: 43rem;
     height: 45rem;
     background-color: #ffe2e7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .display-background {
