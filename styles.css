@@ -45,4 +45,6 @@ body {
 
 .solar-cell-frame {
     border: 2px solid black;
+    width: 93%;
+    height: 5rem;
 }
