@@ -54,4 +54,6 @@ body {
 
 .solar-cell {
     border: 2px solid black;
+    width: 35%;
+    height: 2rem;
 }
