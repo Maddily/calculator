@@ -42,3 +42,7 @@ body {
     height: 90%;
     background-color: #ffe1af;
 }
+
+.solar-cell-frame {
+    border: 2px solid black;
+}
