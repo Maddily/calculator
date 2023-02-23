@@ -58,3 +58,7 @@ body {
     height: 2rem;
     margin-left: 55%;
 }
+
+.solar-cell-part {
+    border: 1px solid black;
+}
