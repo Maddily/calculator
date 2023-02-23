@@ -20,6 +20,7 @@ body {
     border: 2px solid black;
     width: 43rem;
     height: 45rem;
+    background-color: #ffe2e7;
 }
 
 .display-background {
@@ -27,3 +28,4 @@ body {
     width: 85%;
     height: 6rem;
 }
+
