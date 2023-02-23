@@ -57,8 +57,10 @@ body {
     width: 35%;
     height: 2rem;
     margin-left: 55%;
+    display: flex;
 }
 
 .solar-cell-part {
     border: 1px solid black;
+    flex: 1;
 }
