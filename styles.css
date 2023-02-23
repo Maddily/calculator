@@ -33,3 +33,6 @@ body {
     align-items: center;
 }
 
+.display {
+    border: 2px solid black;
+}
