@@ -48,4 +48,7 @@ body {
     width: 93%;
     height: 5rem;
     background-color: #f2aab6;
+    display: flex;
+    align-items: center;
 }
+
