@@ -65,3 +65,7 @@ body {
     border: 1px solid black;
     flex: 1;
 }
+
+.buttons {
+    width: 100%;
+}
