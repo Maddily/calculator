@@ -8,4 +8,6 @@ body {
 
 .calculator {
     border: 2px solid black;
+    width: 43rem;
+    height: 45rem;
 }
