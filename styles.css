@@ -95,6 +95,11 @@ body {
     gap: 1rem;
 }
 
+.number-buttons div, .operator-buttons div {
+    display: flex;
+    gap: 0.8rem;
+}
+
 .operator-buttons {
     display: flex;
     flex-direction: column;
