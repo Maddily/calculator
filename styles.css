@@ -48,6 +48,11 @@ body {
     height: 90%;
     background-color: #ffe1af;
     font-family: digital7, sans-serif;
+    font-size: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    padding: 0 0.5rem 0 0.5rem;
 }
 
 .solar-cell-frame {
