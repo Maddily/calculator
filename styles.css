@@ -82,3 +82,8 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.ce, .c {
+    width: 4rem;
+    height: 8rem;
+}
