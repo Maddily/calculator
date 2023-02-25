@@ -100,3 +100,8 @@ body {
     align-items: center;
     gap: 1rem;
 }
+
+.plus {
+    width: 9rem;
+    height: 9rem;
+}
