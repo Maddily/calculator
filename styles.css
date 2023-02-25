@@ -77,3 +77,8 @@ body {
     width: 4.5rem;
     height: 4.5rem;
 }
+
+.clear-buttons {
+    display: flex;
+    flex-direction: column;
+}
