@@ -72,3 +72,8 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
+
+.number-buttons div button, .modulus, .times, .minus, .division {
+    width: 4.5rem;
+    height: 4.5rem;
+}
