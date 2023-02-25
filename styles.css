@@ -132,4 +132,12 @@ button {
     background-color: #87f3f5;
     font-family: 'Changa', sans-serif;
     font-size: 2rem;
+    box-shadow: #204c4d 1px 1px 0,
+                #204c4d 2px 2px 0,
+                #204c4d 3px 3px 0,
+                #204c4d 4px 4px 0,
+                #204c4d 5px 5px 0,
+                #204c4d 6px 6px 0,
+                #204c4d 7px 7px 0,
+                #204c4d 8px 8px 0;
 }
