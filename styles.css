@@ -92,7 +92,7 @@ body {
 }
 
 .solar-cell {
-    border: 2px solid black;
+    border: 2px solid #998969;
     width: 35%;
     height: 2rem;
     background-color: #ffe5af;
@@ -101,7 +101,7 @@ body {
 }
 
 .solar-cell-part {
-    border: 1px solid black;
+    border: 1px solid #998969;
     flex: 1;
 }
 
