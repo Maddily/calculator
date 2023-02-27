@@ -171,6 +171,12 @@ button {
     cursor: pointer;
 }
 
+span {
+    font-family: 'Changa', sans-serif;
+    font-size: 1.1rem;
+    color: white;
+}
+
 img {
     width: 1.5rem;
 }
