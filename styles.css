@@ -168,4 +168,5 @@ button {
                 #473e59 7px 7px 0,
                 #473e59 8px 8px 0;
     border: 2px solid #473e59;
+    cursor: pointer;
 }
