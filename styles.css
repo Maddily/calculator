@@ -83,6 +83,10 @@ body {
     padding: 0 0.5rem 0 0.5rem;
 }
 
+.display-input {
+    width: 100%;
+}
+
 .solar-cell-frame {
     border: 2px solid #865a69;
     width: 93%;
