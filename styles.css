@@ -87,6 +87,12 @@ body {
     width: 100%;
 }
 
+.display-result {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .solar-cell-frame {
     border: 2px solid #865a69;
     width: 93%;
