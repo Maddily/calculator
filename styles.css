@@ -78,8 +78,7 @@ body {
     font-family: digital7, sans-serif;
     font-size: 2.5rem;
     display: flex;
-    justify-content: flex-end;
-    align-items: end;
+    flex-direction: column;
     padding: 0 0.5rem 0 0.5rem;
 }
 
