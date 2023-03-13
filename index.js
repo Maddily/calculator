@@ -92,6 +92,10 @@ function listenForEqual() {
             storedValue.textContent = +displayResult.textContent;
             displayResult.textContent = '';
         }
+        else if (signThen === undefined && displayResult.textContent !== '') {
+            storedValue.textContent = +displayResult.textContent;
+            displayResult.textContent = '';
+        }
     });
 }
 
