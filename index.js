@@ -129,3 +129,4 @@ c.addEventListener('click', () => {
 });
 
 ListenForOperand();
+listenForOperator();
