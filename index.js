@@ -85,6 +85,16 @@ function listenForOperator() {
     });
 }
 
+function listenForEqual() {
+    equal.addEventListener('click', () => {
+        if (signNow === undefined && signThen !== undefined && displayResult.textContent !== '') {
+            displayResult.textContent = operate(signThen, +storedValue.textContent, +displayResult.textContent);
+            storedValue.textContent = +displayResult.textContent;
+            displayResult.textContent = '';
+        }
+    });
+}
+
 let storedValue = document.querySelector('.stored-value');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
