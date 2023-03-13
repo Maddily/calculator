@@ -102,6 +102,11 @@ function listenForEqual() {
         else if (storedValue.textContent === '' && displayResult.textContent === '') {
             storedValue.textContent = '';
         }
+        else {
+            displayResult.textContent = operate(signNow, +storedValue.textContent, +displayResult.textContent);
+            storedValue.textContent = +displayResult.textContent;
+            displayResult.textContent = '';
+        }
     });
 }
 
