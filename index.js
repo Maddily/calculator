@@ -47,7 +47,11 @@ function operate(operator, n1, n2) {
 function ListenForOperand() {
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
-            displayResult.textContent += numberButton.textContent;
+            if (displayResult.textContent.includes('.') && numberButton.textContent === '.') {
+                displayResult.textContent = displayResult.textContent;
+            } else {
+                displayResult.textContent += numberButton.textContent;
+            }
         });
     })
 }
