@@ -127,3 +127,5 @@ c.addEventListener('click', () => {
     signThen = undefined;
     signNow = undefined;
 });
+
+ListenForOperand();
