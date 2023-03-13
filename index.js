@@ -48,3 +48,4 @@ let storedValue = document.querySelector('.stored-value');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
+const equal = document.querySelector('.equal');
