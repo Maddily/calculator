@@ -53,3 +53,5 @@ let signThen;
 let signNow;
 const ce = document.querySelector('.ce');
 const c = document.querySelector('.c');
+
+ce.addEventListener('click', () => displayResult.textContent = '');
