@@ -55,3 +55,9 @@ const ce = document.querySelector('.ce');
 const c = document.querySelector('.c');
 
 ce.addEventListener('click', () => displayResult.textContent = '');
+c.addEventListener('click', () => {
+    displayResult.textContent = '';
+    storedValue.textContent = '';
+    signThen = undefined;
+    signNow = undefined;
+});
