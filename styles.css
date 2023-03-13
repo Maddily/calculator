@@ -7,18 +7,28 @@
     src: url(Digital7-rg1mL.ttf);
 }
 
-html {
-    width: 100%;
+html, body {
     height: 100%;
 }
 
-body {
+html, body, .stored-value, .result, .buttons, .plus {
     width: 100%;
-    height: 100%;
+}
+
+body {
     background-image: url('images/bg.jpg');
-    display: flex;
-    flex-direction: column;
     justify-content: space-around;
+}
+
+body, .calculator, .display-background, .display, .stored-value, .result, .solar-cell-frame, .solar-cell, .buttons, .clear-buttons, .number-buttons, .number-buttons div, .operator-buttons div, .operator-buttons, footer {
+    display: flex;
+}
+
+body, .calculator, .display, .clear-buttons, .number-buttons, .operator-buttons {
+    flex-direction: column;
+}
+
+body, .calculator, .display-background, .solar-cell-frame, footer {
     align-items: center;
 }
 
@@ -27,10 +37,6 @@ body {
     width: 43rem;
     height: 45rem;
     background-color: #68618f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
     box-shadow: #3f3c59 1px 1px 0,
                 #3f3c59 2px 2px 0,
                 #3f3c59 3px 3px 0,
@@ -60,14 +66,19 @@ body {
                 #3f3c59 27px 27px 0;
 }
 
+.calculator, .buttons {
+    justify-content: space-evenly;
+}
+
 .display-background {
     border: 2px solid #584d6e;
     width: 85%;
     height: 6rem;
-    background-color: #c5b7e2;
-    display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.display-background, button {
+    background-color: #c5b7e2;
 }
 
 .display {
@@ -77,22 +88,18 @@ body {
     background-color: #ffe1af;
     font-family: digital7, sans-serif;
     font-size: 2.5rem;
-    display: flex;
-    flex-direction: column;
     padding: 0 0.5rem 0 0.5rem;
 }
 
 .stored-value {
-    flex: 1;
-    width: 100%;
-    display: flex;
     justify-content: flex-start;
 }
 
-.result {
+.stored-value, .result, .solar-cell-part {
     flex: 1;
-    width: 100%;
-    display: flex;
+}
+
+.result {
     justify-content: flex-end;
 }
 
@@ -101,8 +108,6 @@ body {
     width: 93%;
     height: 5rem;
     background-color: #af7589;
-    display: flex;
-    align-items: center;
 }
 
 .solar-cell {
@@ -111,18 +116,10 @@ body {
     height: 2rem;
     background-color: #ffe5af;
     margin-left: 55%;
-    display: flex;
 }
 
 .solar-cell-part {
     border: 1px solid #998969;
-    flex: 1;
-}
-
-.buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .number-buttons div button, .remainder, .times, .minus, .division {
@@ -131,32 +128,26 @@ body {
 }
 
 .clear-buttons {
-    display: flex;
-    flex-direction: column;
+}
+
+.clear-buttons, .operator-buttons {
     justify-content: space-between;
 }
 
 .ce, .c {
     width: 5rem;
+}
+
+.ce, .c, .plus {
     height: 9rem;
 }
 
-.number-buttons {
-    display: flex;
-    flex-direction: column;
+.number-buttons, .operator-buttons {
     gap: 1rem;
 }
 
 .number-buttons div, .operator-buttons div {
-    display: flex;
     gap: 0.8rem;
-}
-
-.operator-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
 }
 
 .remainder {
@@ -164,14 +155,10 @@ body {
 }
 
 .plus {
-    width: 100%;
-    height: 9rem;
     font-size: 4rem;
 }
 
 button {
-    background-color: #c5b7e2;
-    font-family: 'Changa', sans-serif;
     font-size: 2rem;
     box-shadow: #473e59 1px 1px 0,
                 #473e59 2px 2px 0,
@@ -185,14 +172,15 @@ button {
     cursor: pointer;
 }
 
+button, span {
+    font-family: 'Changa', sans-serif;
+}
+
 footer {
-    display: flex;
     gap: 6px;
-    align-items: center;
 }
 
 span {
-    font-family: 'Changa', sans-serif;
     font-size: 1.1rem;
     color: white;
 }
