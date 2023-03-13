@@ -99,6 +99,9 @@ function listenForEqual() {
         else if (storedValue.textContent !== '' && displayResult.textContent === '') {
             displayResult.textContent = '';
         }
+        else if (storedValue.textContent === '' && displayResult.textContent === '') {
+            storedValue.textContent = '';
+        }
     });
 }
 
