@@ -43,3 +43,6 @@ function operate(operator, n1, n2) {
         return remainder(n1, n2);
     }
 }
+
+let storedValue = document.querySelector('.stored-value');
+let displayResult = document.querySelector('.result');
