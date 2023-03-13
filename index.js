@@ -51,3 +51,5 @@ const operators = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
 let signThen;
 let signNow;
+const ce = document.querySelector('.ce');
+const c = document.querySelector('.c');
