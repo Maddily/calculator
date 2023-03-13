@@ -69,6 +69,13 @@ function listenForOperator() {
             else if (storedValue.textContent !== '' && displayResult.textContent === '') {
                 signThen = operator.textContent;
             }
+            else if (storedValue.textContent === displayResult.textContent) {
+                signNow = operator.textContent;
+                displayResult.textContent = operate(signThen, +storedValue.textContent, +displayResult.textContent);
+                storedValue.textContent = +displayResult.textContent;
+                displayResult.textContent = '';
+                signThen = signNow;
+            }
         })
     });
 }
