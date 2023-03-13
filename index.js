@@ -26,10 +26,18 @@ function operate(operator, n1, n2) {
         return subtract(n1, n2);
     }
     else if (operator == '×') {
+        if (!Number.isInteger(multiply(n1, n2)) && multiply(n1, n2).toString().split('.')[1].length > 10) {
+            return multiply(n1, n2).toFixed(10);
+        } else {
             return multiply(n1, n2);
+        }
     }
     else if (operator == '÷') {
+        if (!Number.isInteger(divide(n1, n2)) && divide(n1, n2).toString().split('.')[1].length > 10) {
+            return divide(n1, n2).toFixed(10);
+        } else {
             return divide(n1, n2);
+        }
     }
     else if (operator == '%') {
         return remainder(n1, n2);
