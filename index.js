@@ -130,3 +130,4 @@ c.addEventListener('click', () => {
 
 ListenForOperand();
 listenForOperator();
+listenForEqual();
