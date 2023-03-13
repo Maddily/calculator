@@ -44,6 +44,14 @@ function operate(operator, n1, n2) {
     }
 }
 
+function ListenForOperand() {
+    numberButtons.forEach((numberButton) => {
+        numberButton.addEventListener('click', () => {
+            displayResult.textContent += numberButton.textContent;
+        });
+    })
+}
+
 let storedValue = document.querySelector('.stored-value');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
