@@ -76,6 +76,11 @@ function listenForOperator() {
                 displayResult.textContent = '';
                 signThen = signNow;
             }
+            else {
+                storedValue.textContent = +displayResult.textContent;
+                signThen = operator.textContent;
+                displayResult.textContent = '';
+            }
         })
     });
 }
