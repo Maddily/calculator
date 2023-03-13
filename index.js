@@ -49,3 +49,5 @@ let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
+let signThen;
+let signNow;
