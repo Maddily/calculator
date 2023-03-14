@@ -72,10 +72,10 @@ function listenForOperator() {
                 input = '';
                 signThen = signNow;
             }
-            else if (/[0-9] [^0-9] [0-9]/.test(equation.textContent) && displayResult.textContent !== '') {
-                equation.textContent = displayResult.textContent + ' ' + operator.textContent + ' ';
-                storedValue = +displayResult.textContent;
-                displayResult.textContent = '';
+            else if (/[0-9] [^0-9] [0-9]/.test(equation.textContent) && result.textContent !== '') {
+                equation.textContent = result.textContent + ' ' + operator.textContent + ' ';
+                storedValue = +result.textContent;
+                result.textContent = '';
                 signThen = operator.textContent;
             }
             else if (equation.textContent.split(' ')[2] === '') {
@@ -106,8 +106,8 @@ function listenForOperator() {
 function listenForEqual() {
     equal.addEventListener('click', () => {
         if (signNow === undefined && signThen !== undefined && input !== '') {
-            displayResult.textContent = operate(signThen, storedValue, +input);
-            storedValue = +displayResult.textContent;
+            result.textContent = operate(signThen, storedValue, +input);
+            storedValue = +result.textContent;
             input = '';
         }
         else if (signThen === undefined && input !== '') {
@@ -121,8 +121,8 @@ function listenForEqual() {
             storedValue = undefined;
         }
         else {
-            displayResult.textContent = operate(signThen, storedValue, +input);
-            storedValue = +displayResult.textContent;
+            result.textContent = operate(signThen, storedValue, +input);
+            storedValue = +result.textContent;
             input = '';
         }
     });
@@ -131,7 +131,7 @@ function listenForEqual() {
 let storedValue;
 let input = '';
 let equation = document.querySelector('.equation');
-let displayResult = document.querySelector('.result');
+let result = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
@@ -141,8 +141,8 @@ const ce = document.querySelector('.ce');
 const c = document.querySelector('.c');
 
 ce.addEventListener('click', () => {
-    if (displayResult.textContent !== '') {
-        displayResult.textContent = displayResult.textContent;
+    if (result.textContent !== '') {
+        result.textContent = result.textContent;
     } else {
         let array = equation.textContent.split(/ /);
         array = array.slice(0, array.length - 1);
@@ -152,7 +152,7 @@ ce.addEventListener('click', () => {
 });
 c.addEventListener('click', () => {
     input = '';
-    displayResult.textContent = '';
+    result.textContent = '';
     equation.textContent = '';
     storedValue = undefined;
     signThen = undefined;
