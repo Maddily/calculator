@@ -59,25 +59,25 @@ function ListenForOperand() {
 function listenForOperator() {
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
-            if (storedValue.textContent !== '' && storedValue.textContent !== displayResult.textContent && displayResult.textContent !== '') {
+            if (storedValue !== undefined && storedValue !== +displayResult.textContent && displayResult.textContent !== '') {
                 signNow = operator.textContent;
-                displayResult.textContent = operate(signThen, +storedValue.textContent, +displayResult.textContent);
-                storedValue.textContent = +displayResult.textContent;
+                displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
+                storedValue = +displayResult.textContent;
                 displayResult.textContent = '';
                 signThen = signNow;
             }
-            else if (storedValue.textContent !== '' && displayResult.textContent === '') {
+            else if (storedValue !== undefined && displayResult.textContent === '') {
                 signThen = operator.textContent;
             }
-            else if (storedValue.textContent === displayResult.textContent) {
+            else if (storedValue === +displayResult.textContent) {
                 signNow = operator.textContent;
-                displayResult.textContent = operate(signThen, +storedValue.textContent, +displayResult.textContent);
-                storedValue.textContent = +displayResult.textContent;
+                displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
+                storedValue = +displayResult.textContent;
                 displayResult.textContent = '';
                 signThen = signNow;
             }
             else {
-                storedValue.textContent = +displayResult.textContent;
+                storedValue = +displayResult.textContent;
                 signThen = operator.textContent;
                 displayResult.textContent = '';
             }
@@ -88,28 +88,29 @@ function listenForOperator() {
 function listenForEqual() {
     equal.addEventListener('click', () => {
         if (signNow === undefined && signThen !== undefined && displayResult.textContent !== '') {
-            displayResult.textContent = operate(signThen, +storedValue.textContent, +displayResult.textContent);
-            storedValue.textContent = +displayResult.textContent;
+            displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
+            storedValue = +displayResult.textContent;
             displayResult.textContent = '';
         }
         else if (signThen === undefined && displayResult.textContent !== '') {
-            storedValue.textContent = +displayResult.textContent;
+            storedValue = +displayResult.textContent;
             displayResult.textContent = '';
         }
-        else if (storedValue.textContent !== '' && displayResult.textContent === '') {
+        else if (storedValue !== undefined && displayResult.textContent === '') {
             displayResult.textContent = '';
         }
-        else if (storedValue.textContent === '' && displayResult.textContent === '') {
-            storedValue.textContent = '';
+        else if (storedValue === undefined && displayResult.textContent === '') {
+            storedValue = undefined;
         }
         else {
-            displayResult.textContent = operate(signNow, +storedValue.textContent, +displayResult.textContent);
-            storedValue.textContent = +displayResult.textContent;
+            displayResult.textContent = operate(signNow, storedValue, +displayResult.textContent);
+            storedValue = +displayResult.textContent;
             displayResult.textContent = '';
         }
     });
 }
 
+let storedValue;
 let storedValue = document.querySelector('.stored-value');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
@@ -123,7 +124,7 @@ const c = document.querySelector('.c');
 ce.addEventListener('click', () => displayResult.textContent = '');
 c.addEventListener('click', () => {
     displayResult.textContent = '';
-    storedValue.textContent = '';
+    storedValue = undefined;
     signThen = undefined;
     signNow = undefined;
 });
