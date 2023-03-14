@@ -111,7 +111,7 @@ function listenForEqual() {
 }
 
 let storedValue;
-let storedValue = document.querySelector('.stored-value');
+let equation = document.querySelector('.equation');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
