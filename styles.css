@@ -11,7 +11,7 @@ html, body {
     height: 100%;
 }
 
-html, body, .stored-value, .result, .buttons, .plus {
+html, body, .equation, .result, .buttons, .plus {
     width: 100%;
 }
 
@@ -20,7 +20,7 @@ body {
     justify-content: space-around;
 }
 
-body, .calculator, .display-background, .display, .stored-value, .result, .solar-cell-frame, .solar-cell, .buttons, .clear-buttons, .number-buttons, .number-buttons div, .operator-buttons div, .operator-buttons, footer {
+body, .calculator, .display-background, .display, .equation, .result, .solar-cell-frame, .solar-cell, .buttons, .clear-buttons, .number-buttons, .number-buttons div, .operator-buttons div, .operator-buttons, footer {
     display: flex;
 }
 
@@ -91,11 +91,11 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     padding: 0 0.5rem 0 0.5rem;
 }
 
-.stored-value {
+.equation {
     justify-content: flex-start;
 }
 
-.stored-value, .result, .solar-cell-part {
+.equation, .result, .solar-cell-part {
     flex: 1;
 }
 
