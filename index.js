@@ -84,6 +84,7 @@ function listenForOperator() {
             }
             else if (storedValue !== undefined && input === '') {
                 signThen = operator.textContent;
+                equation.textContent += ' ' + operator.textContent + ' ';
             }
             else if (storedValue === +input) {
                 signNow = operator.textContent;
