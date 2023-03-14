@@ -47,10 +47,16 @@ function operate(operator, n1, n2) {
 function ListenForOperand() {
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
-            if (displayResult.textContent.includes('.') && numberButton.textContent === '.') {
-                displayResult.textContent = displayResult.textContent;
-            } else {
-                displayResult.textContent += numberButton.textContent;
+            if (input.includes('.') && numberButton.textContent === '.') {
+                input = input;
+            }
+            else if (/[0-9] [^0-9]/.test(equation.textContent)) {
+                input += numberButton.textContent;
+                equation.textContent += numberButton.textContent;
+            }
+            else {
+                input += numberButton.textContent;
+                equation.textContent += numberButton.textContent;
             }
         });
     })
@@ -59,27 +65,38 @@ function ListenForOperand() {
 function listenForOperator() {
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
-            if (storedValue !== undefined && storedValue !== +displayResult.textContent && displayResult.textContent !== '') {
+            if (storedValue !== undefined && storedValue !== +input && input !== '') {
                 signNow = operator.textContent;
-                displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
-                storedValue = +displayResult.textContent;
-                displayResult.textContent = '';
+                storedValue = operate(signThen, storedValue, +input);
+                equation.textContent = storedValue + ' ' + operator.textContent + ' ';
+                input = '';
                 signThen = signNow;
             }
-            else if (storedValue !== undefined && displayResult.textContent === '') {
-                signThen = operator.textContent;
-            }
-            else if (storedValue === +displayResult.textContent) {
-                signNow = operator.textContent;
-                displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
+            else if (/[0-9] [^0-9] [0-9]/.test(equation.textContent) && displayResult.textContent !== '') {
+                equation.textContent = displayResult.textContent + ' ' + operator.textContent + ' ';
                 storedValue = +displayResult.textContent;
                 displayResult.textContent = '';
+                signThen = operator.textContent;
+            }
+            else if (equation.textContent.split(' ')[2] === '') {
+                equation.textContent = equation.textContent.replace(/ [^0-9]/, ' ' + operator.textContent);
+                signThen = operator.textContent;
+            }
+            else if (storedValue !== undefined && input === '') {
+                signThen = operator.textContent;
+            }
+            else if (storedValue === +input) {
+                signNow = operator.textContent;
+                storedValue = operate(signThen, storedValue, +input);
+                equation.textContent = storedValue + ' ' + operator.textContent + ' ';
+                input = '';
                 signThen = signNow;
             }
             else {
-                storedValue = +displayResult.textContent;
+                equation.textContent += ' ' + operator.textContent + ' ';
+                storedValue = +input;
                 signThen = operator.textContent;
-                displayResult.textContent = '';
+                input = '';
             }
         })
     });
@@ -87,30 +104,31 @@ function listenForOperator() {
 
 function listenForEqual() {
     equal.addEventListener('click', () => {
-        if (signNow === undefined && signThen !== undefined && displayResult.textContent !== '') {
-            displayResult.textContent = operate(signThen, storedValue, +displayResult.textContent);
+        if (signNow === undefined && signThen !== undefined && input !== '') {
+            displayResult.textContent = operate(signThen, storedValue, +input);
             storedValue = +displayResult.textContent;
-            displayResult.textContent = '';
+            input = '';
         }
-        else if (signThen === undefined && displayResult.textContent !== '') {
-            storedValue = +displayResult.textContent;
-            displayResult.textContent = '';
+        else if (signThen === undefined && input !== '') {
+            storedValue = +input;
+            input = '';
         }
-        else if (storedValue !== undefined && displayResult.textContent === '') {
-            displayResult.textContent = '';
+        else if (storedValue !== undefined && input === '') {
+            input = '';
         }
-        else if (storedValue === undefined && displayResult.textContent === '') {
+        else if (storedValue === undefined && input === '') {
             storedValue = undefined;
         }
         else {
-            displayResult.textContent = operate(signNow, storedValue, +displayResult.textContent);
+            displayResult.textContent = operate(signThen, storedValue, +input);
             storedValue = +displayResult.textContent;
-            displayResult.textContent = '';
+            input = '';
         }
     });
 }
 
 let storedValue;
+let input = '';
 let equation = document.querySelector('.equation');
 let displayResult = document.querySelector('.result');
 const numberButtons = document.querySelectorAll('.number');
@@ -121,9 +139,20 @@ let signNow;
 const ce = document.querySelector('.ce');
 const c = document.querySelector('.c');
 
-ce.addEventListener('click', () => displayResult.textContent = '');
+ce.addEventListener('click', () => {
+    if (displayResult.textContent !== '') {
+        displayResult.textContent = displayResult.textContent;
+    } else {
+        let array = equation.textContent.split(/ /);
+        array = array.slice(0, array.length - 1);
+        equation.textContent = array.join(' ') + ' ';
+        input = '';
+    }
+});
 c.addEventListener('click', () => {
+    input = '';
     displayResult.textContent = '';
+    equation.textContent = '';
     storedValue = undefined;
     signThen = undefined;
     signNow = undefined;
