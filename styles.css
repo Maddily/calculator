@@ -99,6 +99,10 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     flex: 1;
 }
 
+.equation, .result {
+    align-items: center;
+}
+
 .result {
     justify-content: flex-end;
 }
