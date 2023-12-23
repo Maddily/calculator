@@ -17,7 +17,13 @@ function divide(n1, n2) {
 function remainder(n1, n2) {
     return n1 % n2;
 }
-
+/**
+ * 
+ * @param {*} operator 
+ * @param {*} n1 
+ * @param {*} n2 
+ * @returns 
+ */
 function operate(operator, n1, n2) {
     if (operator == '+') {
         return add(n1, n2);
@@ -47,12 +53,9 @@ function operate(operator, n1, n2) {
 function ListenForOperand() {
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
+			/* Prevent inputting two decimal points in the same number */
             if (input.includes('.') && numberButton.textContent === '.') {
                 input = input;
-            }
-            else if (/[0-9] [^0-9]/.test(equation.textContent)) {
-                input += numberButton.textContent;
-                equation.textContent += numberButton.textContent;
             }
             else {
                 input += numberButton.textContent;
