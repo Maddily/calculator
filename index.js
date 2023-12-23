@@ -51,6 +51,7 @@ function operate(operator, n1, n2) {
 }
 
 function ListenForOperand() {
+	/* Listens for a click on a number button */
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
 			/* Prevent inputting two decimal points in the same number */
@@ -63,6 +64,23 @@ function ListenForOperand() {
             }
         });
     })
+}
+
+function listenForOperandKeyDown() {
+	let numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+	window.addEventListener('keydown', (e) => {
+		if (numbers.includes(e.key))
+		{
+			/* Prevent inputting two decimal points in the same number */
+			if (input.includes('.') && e.key === '.') {
+                input = input;
+            }
+            else {
+                input += e.key;
+                equation.textContent += e.key;
+            }
+		}
+	});
 }
 
 function listenForOperator() {
@@ -163,5 +181,6 @@ c.addEventListener('click', () => {
 });
 
 ListenForOperand();
+listenForOperandKeyDown();
 listenForOperator();
 listenForEqual();
