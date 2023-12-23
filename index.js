@@ -50,7 +50,7 @@ function operate(operator, n1, n2) {
     }
 }
 
-function ListenForOperand() {
+function listenForOperand() {
 	/* Listens for a click on a number button */
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
@@ -180,7 +180,7 @@ c.addEventListener('click', () => {
     signNow = undefined;
 });
 
-ListenForOperand();
+listenForOperand();
 listenForOperandKeyDown();
 listenForOperator();
 listenForEqual();
