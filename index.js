@@ -81,7 +81,7 @@ function listenForOperandKeyDown() {
 	});
 }
 
-function listenForOperator() {
+function listenForOperatorClick() {
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
             if (storedValue !== undefined && storedValue !== +input && input !== '') {
@@ -180,5 +180,5 @@ c.addEventListener('click', () => {
 
 listenForOperandClick();
 listenForOperandKeyDown();
-listenForOperator();
+listenForOperatorClick();
 listenForEqual();
