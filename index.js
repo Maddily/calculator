@@ -71,6 +71,7 @@ function listenForOperand() {
 }
 
 function listenForOperandKeyDown() {
+	/* Listen for a number key press */
 	let numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 	window.addEventListener('keydown', (e) => {
 		if (numbers.includes(e.key))
