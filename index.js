@@ -50,18 +50,22 @@ function operate(operator, n1, n2) {
     }
 }
 
+function receiveInput(character) {
+	/* Prevent inputting two decimal points in the same number */
+	if (input.includes('.') && character === '.') {
+		input = input;
+	}
+	else {
+		input += character;
+		equation.textContent += character;
+	}
+}
+
 function listenForOperand() {
 	/* Listens for a click on a number button */
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
-			/* Prevent inputting two decimal points in the same number */
-            if (input.includes('.') && numberButton.textContent === '.') {
-                input = input;
-            }
-            else {
-                input += numberButton.textContent;
-                equation.textContent += numberButton.textContent;
-            }
+            receiveInput(numberButton.textContent);
         });
     })
 }
@@ -71,14 +75,7 @@ function listenForOperandKeyDown() {
 	window.addEventListener('keydown', (e) => {
 		if (numbers.includes(e.key))
 		{
-			/* Prevent inputting two decimal points in the same number */
-			if (input.includes('.') && e.key === '.') {
-                input = input;
-            }
-            else {
-                input += e.key;
-                equation.textContent += e.key;
-            }
+			receiveInput(e.key);
 		}
 	});
 }
