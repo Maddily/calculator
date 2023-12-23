@@ -61,7 +61,7 @@ function receiveInput(character) {
 	}
 }
 
-function listenForOperand() {
+function listenForOperandClick() {
 	/* Listens for a click on a number button */
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
@@ -178,7 +178,7 @@ c.addEventListener('click', () => {
     signNow = undefined;
 });
 
-listenForOperand();
+listenForOperandClick();
 listenForOperandKeyDown();
 listenForOperator();
 listenForEqual();
