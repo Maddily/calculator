@@ -70,6 +70,24 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     justify-content: space-evenly;
 }
 
+.buttons button:active {
+	background-color: #584d6e;
+	box-shadow: #3f3c59 1px 1px 0,
+                #3f3c59 2px 2px 0,
+                #3f3c59 3px 3px 0,
+                #3f3c59 4px 4px 0;
+	transform: translateX(2px) translateY(2px);
+}
+
+.buttons button.active {
+	background-color: #584d6e;
+	box-shadow: #3f3c59 1px 1px 0,
+                #3f3c59 2px 2px 0,
+                #3f3c59 3px 3px 0,
+                #3f3c59 4px 4px 0;
+	transform: translateX(2px) translateY(2px);
+}
+
 .display-background {
     border: 2px solid #584d6e;
     width: 85%;
