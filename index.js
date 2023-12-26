@@ -72,7 +72,8 @@ function listenForOperandClick() {
 
 function listenForOperandKeyDown() {
 	/* Listen for a number key press */
-	let numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+	const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
 	window.addEventListener('keydown', (e) => {
 		if (numbers.includes(e.key))
 		{
@@ -81,23 +82,26 @@ function listenForOperandKeyDown() {
 	});
 }
 
-function listenForOperatorClick() {
-    operators.forEach((operator) => {
-        operator.addEventListener('click', () => {
-            if (storedValue !== undefined && storedValue !== +input && input !== '') {
+function handleOperator(operator) {
+	if (storedValue !== undefined && storedValue !== +input && input !== ''
+			|| storedValue === +input) {
+				/* Example: displayed equation is "1 + 2" or "2 + 2" and an operator is clicked */
                 signNow = operator.textContent;
                 storedValue = operate(signThen, storedValue, +input);
-                equation.textContent = storedValue + ' ' + operator.textContent + ' ';
+                equation.textContent = storedValue + ' ' + signNow + ' ';
                 input = '';
                 signThen = signNow;
             }
             else if (/[0-9] [^0-9] [0-9]/.test(equation.textContent) && result.textContent !== '') {
+				/* Example: displayed equation is "3 + 2" and "=" was clicked before the operator */
                 equation.textContent = result.textContent + ' ' + operator.textContent + ' ';
                 storedValue = +result.textContent;
                 result.textContent = '';
                 signThen = operator.textContent;
             }
             else if (equation.textContent.split(' ')[2] === '') {
+				/* When the user wants to change the selected operator */
+				/* Example: displayed equation is "3 + " */
                 equation.textContent = equation.textContent.replace(/ [^0-9]/, ' ' + operator.textContent);
                 signThen = operator.textContent;
             }
@@ -105,21 +109,50 @@ function listenForOperatorClick() {
                 signThen = operator.textContent;
                 equation.textContent += ' ' + operator.textContent + ' ';
             }
-            else if (storedValue === +input) {
-                signNow = operator.textContent;
-                storedValue = operate(signThen, storedValue, +input);
-                equation.textContent = storedValue + ' ' + operator.textContent + ' ';
-                input = '';
-                signThen = signNow;
-            }
             else {
+				/* When there's only one number and no operator in the equation */
                 equation.textContent += ' ' + operator.textContent + ' ';
                 storedValue = +input;
                 signThen = operator.textContent;
                 input = '';
             }
+}
+
+function listenForOperatorClick() {
+    operators.forEach((operator) => {
+        operator.addEventListener('click', () => {
+            handleOperator(operator);
         })
     });
+}
+
+function listenForOperatorKeyDown() {
+	const currentOperators = ['+', '-', '/', '*', '%'];
+
+	window.addEventListener('keydown', (e) => {
+		if (currentOperators.includes(e.key))
+		{
+			const dummyElement = document.createElement('div');
+			if (e.key == '*')
+			{
+				dummyElement.textContent = '×';
+			}
+			else if (e.key == '/')
+			{
+				dummyElement.textContent = '÷';;
+			}
+			else if (e.key == '-')
+			{
+				dummyElement.textContent = '–';
+			}
+			else
+			{
+				dummyElement.textContent = e.key;
+			}
+
+			handleOperator(dummyElement);
+		}
+	});
 }
 
 function listenForEqual() {
@@ -181,4 +214,5 @@ c.addEventListener('click', () => {
 listenForOperandClick();
 listenForOperandKeyDown();
 listenForOperatorClick();
+listenForOperatorKeyDown();
 listenForEqual();
