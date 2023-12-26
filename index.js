@@ -155,29 +155,42 @@ function listenForOperatorKeyDown() {
 	});
 }
 
+function handleEqual() {
+	if (signNow === undefined && signThen !== undefined && input !== '') {
+		result.textContent = operate(signThen, storedValue, +input);
+		storedValue = +result.textContent;
+		input = '';
+	}
+	else if (signThen === undefined && input !== '') {
+		storedValue = +input;
+		input = '';
+	}
+	else if (storedValue !== undefined && input === '') {
+		input = '';
+	}
+	else if (storedValue === undefined && input === '') {
+		storedValue = undefined;
+	}
+	else {
+		result.textContent = operate(signThen, storedValue, +input);
+		storedValue = +result.textContent;
+		input = '';
+	}
+}
+
 function listenForEqualClick() {
     equal.addEventListener('click', () => {
-        if (signNow === undefined && signThen !== undefined && input !== '') {
-            result.textContent = operate(signThen, storedValue, +input);
-            storedValue = +result.textContent;
-            input = '';
-        }
-        else if (signThen === undefined && input !== '') {
-            storedValue = +input;
-            input = '';
-        }
-        else if (storedValue !== undefined && input === '') {
-            input = '';
-        }
-        else if (storedValue === undefined && input === '') {
-            storedValue = undefined;
-        }
-        else {
-            result.textContent = operate(signThen, storedValue, +input);
-            storedValue = +result.textContent;
-            input = '';
-        }
+        handleEqual();
     });
+}
+
+function listenForEqualKeyDown() {
+	window.addEventListener('keydown', (e) => {
+		if (e.key == '=')
+		{
+			handleEqual();
+		}
+	});
 }
 
 let storedValue;
@@ -216,3 +229,4 @@ listenForOperandKeyDown();
 listenForOperatorClick();
 listenForOperatorKeyDown();
 listenForEqualClick();
+listenForEqualKeyDown();
