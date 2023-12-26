@@ -193,6 +193,18 @@ function listenForEqualKeyDown() {
 	});
 }
 
+function handleCE()
+{
+	if (result.textContent !== '') {
+        result.textContent = result.textContent;
+    } else {
+        let array = equation.textContent.split(/ /);
+        array = array.slice(0, array.length - 1);
+        equation.textContent = array.join(' ') + ' ';
+        input = '';
+    };
+}
+
 let storedValue;
 let input = '';
 let equation = document.querySelector('.equation');
@@ -206,15 +218,16 @@ const ce = document.querySelector('.ce');
 const c = document.querySelector('.c');
 
 ce.addEventListener('click', () => {
-    if (result.textContent !== '') {
-        result.textContent = result.textContent;
-    } else {
-        let array = equation.textContent.split(/ /);
-        array = array.slice(0, array.length - 1);
-        equation.textContent = array.join(' ') + ' ';
-        input = '';
-    }
+    handleCE();
 });
+
+window.addEventListener('keydown', (e) => {
+	if (e.key == 'Delete')
+	{
+		handleCE();
+	}
+});
+
 c.addEventListener('click', () => {
     input = '';
     result.textContent = '';
