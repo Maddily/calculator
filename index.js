@@ -155,7 +155,7 @@ function listenForOperatorKeyDown() {
 	});
 }
 
-function listenForEqual() {
+function listenForEqualClick() {
     equal.addEventListener('click', () => {
         if (signNow === undefined && signThen !== undefined && input !== '') {
             result.textContent = operate(signThen, storedValue, +input);
@@ -215,4 +215,4 @@ listenForOperandClick();
 listenForOperandKeyDown();
 listenForOperatorClick();
 listenForOperatorKeyDown();
-listenForEqual();
+listenForEqualClick();
