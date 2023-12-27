@@ -144,7 +144,7 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     border: 1px solid #998969;
 }
 
-.number-buttons div button, .remainder, .times, .minus, .division {
+.number-buttons div button, .remainder, .multiplication, .minus, .division {
     width: 4.5rem;
     height: 4.5rem;
 }
