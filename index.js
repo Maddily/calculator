@@ -55,6 +55,13 @@ function receiveInput(character) {
 	if (input.includes('.') && character === '.') {
 		input = input;
 	}
+	/* When the equation is full and a result is displayed, start over */
+	else if (/[0-9] [^0-9] [0-9]/.test(equation.textContent) && result.textContent !== '') {
+		result.textContent = '';
+		storedValue = undefined;
+		input = character;
+		equation.textContent = character;
+	}
 	else {
 		input += character;
 		equation.textContent += character;
