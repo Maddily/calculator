@@ -78,7 +78,32 @@ function listenForOperandKeyDown() {
 		if (numbers.includes(e.key))
 		{
 			receiveInput(e.key);
+
+			/* Add key styling when pressed */
+			if (e.key == '.')
+			{
+				const element = document.getElementById('d-point');
+				element.classList.add('active');
+			}
+			else
+			{
+				const element = document.getElementById(`n${e.key}`);
+				element.classList.add('active');
+			}
 		}
+	});
+	/* Remove key styling after releasing the key */
+	window.addEventListener('keyup', (e) => {
+		if (e.key == '.')
+			{
+				const element = document.getElementById('d-point');
+				element.classList.remove('active');
+			}
+			else
+			{
+				const element = document.getElementById(`n${e.key}`);
+				element.classList.remove('active');
+			}
 	});
 }
 
@@ -136,22 +161,66 @@ function listenForOperatorKeyDown() {
 			if (e.key == '*')
 			{
 				dummyElement.textContent = '×';
+
+				/* Add styling to key when pressed */
+				const element = document.querySelector('.multiplication');
+				element.classList.add('active');
 			}
 			else if (e.key == '/')
 			{
-				dummyElement.textContent = '÷';;
+				dummyElement.textContent = '÷';
+				const element = document.querySelector('.division');
+				element.classList.add('active');
 			}
 			else if (e.key == '-')
 			{
 				dummyElement.textContent = '–';
+				const element = document.querySelector('.subtraction');
+				element.classList.add('active');
+			}
+			else if (e.key == '%')
+			{
+				dummyElement.textContent = e.key;
+				const element = document.querySelector('.remainder');
+				element.classList.add('active');
 			}
 			else
 			{
 				dummyElement.textContent = e.key;
+				const element = document.querySelector('.addition');
+				element.classList.add('active');
 			}
 
 			handleOperator(dummyElement);
 		}
+	});
+	/* Remove styling given to keys when they're released */
+	window.addEventListener('keyup', (e) => {
+		if (e.key == '*')
+			{
+				const element = document.querySelector('.multiplication');
+				element.classList.remove('active');
+			}
+			else if (e.key == '/')
+			{
+				const element = document.querySelector('.division');
+				element.classList.remove('active');
+			}
+			else if (e.key == '-')
+			{
+				const element = document.querySelector('.subtraction');
+				element.classList.remove('active');
+			}
+			else if (e.key == '%')
+			{
+				const element = document.querySelector('.remainder');
+				element.classList.remove('active');
+			}
+			else if (e.key == '+')
+			{
+				const element = document.querySelector('.addition');
+				element.classList.remove('active');
+			}
 	});
 }
 
@@ -188,8 +257,17 @@ function listenForEqualKeyDown() {
 	window.addEventListener('keydown', (e) => {
 		if (e.key == '=')
 		{
+			/* Add styling to equal key when pressed */
+			const element = document.querySelector('.equal');
+			element.classList.add('active');
+
 			handleEqual();
 		}
+	});
+	/* Remove styling given to equal key when released */
+	window.addEventListener('keyup', (e) => {
+		const element = document.querySelector('.equal');
+		element.classList.remove('active');
 	});
 }
 
@@ -224,8 +302,17 @@ ce.addEventListener('click', () => {
 window.addEventListener('keydown', (e) => {
 	if (e.key == 'Delete')
 	{
+		/* Add styling to CE key when pressed */
+		const element = document.querySelector('.ce');
+		element.classList.add('active');
+
 		handleCE();
 	}
+});
+/* Remove the styling given to CE key when released */
+window.addEventListener('keyup', (e) => {
+	const element = document.querySelector('.ce');
+	element.classList.remove('active');
 });
 
 c.addEventListener('click', () => {
