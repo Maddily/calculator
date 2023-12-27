@@ -255,8 +255,15 @@ function listenForEqualKeyDown() {
 	window.addEventListener('keydown', (e) => {
 		if (e.key == '=')
 		{
+			const element = document.querySelector('.equal');
+			element.classList.add('active');
 			handleEqual();
 		}
+	});
+	/* Remove styling given to equal key when released */
+	window.addEventListener('keyup', (e) => {
+		const element = document.querySelector('.equal');
+		element.classList.remove('active');
 	});
 }
 
