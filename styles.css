@@ -149,9 +149,6 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     height: 4.5rem;
 }
 
-.clear-buttons {
-}
-
 .clear-buttons, .operator-buttons {
     justify-content: space-between;
 }
