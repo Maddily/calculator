@@ -78,7 +78,32 @@ function listenForOperandKeyDown() {
 		if (numbers.includes(e.key))
 		{
 			receiveInput(e.key);
+
+			/* Add key styling when pressed */
+			if (e.key == '.')
+			{
+				const element = document.getElementById('d-point');
+				element.classList.add('active');
+			}
+			else
+			{
+				const element = document.getElementById(`n${e.key}`);
+				element.classList.add('active');
+			}
 		}
+	});
+	/* Remove key styling after releasing the key */
+	window.addEventListener('keyup', (e) => {
+		if (e.key == '.')
+			{
+				const element = document.getElementById('d-point');
+				element.classList.remove('active');
+			}
+			else
+			{
+				const element = document.getElementById(`n${e.key}`);
+				element.classList.remove('active');
+			}
 	});
 }
 
