@@ -11,7 +11,7 @@ html, body {
     height: 100%;
 }
 
-html, body, .equation, .result, .buttons, .plus {
+html, body, .equation, .result, .buttons, .addition {
     width: 100%;
 }
 
@@ -144,7 +144,7 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     border: 1px solid #998969;
 }
 
-.number-buttons div button, .remainder, .multiplication, .minus, .division {
+.number-buttons div button, .remainder, .multiplication, .subtraction, .division {
     width: 4.5rem;
     height: 4.5rem;
 }
@@ -157,7 +157,7 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     width: 5rem;
 }
 
-.ce, .c, .plus {
+.ce, .c, .addition {
     height: 9rem;
 }
 
@@ -173,7 +173,7 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     font-size: 1.5rem;
 }
 
-.plus {
+.addition {
     font-size: 4rem;
 }
 
