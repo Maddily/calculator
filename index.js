@@ -161,6 +161,8 @@ function listenForOperatorKeyDown() {
 			if (e.key == '*')
 			{
 				dummyElement.textContent = '×';
+
+				/* Add styling to key when pressed */
 				const element = document.querySelector('.multiplication');
 				element.classList.add('active');
 			}
@@ -255,8 +257,10 @@ function listenForEqualKeyDown() {
 	window.addEventListener('keydown', (e) => {
 		if (e.key == '=')
 		{
+			/* Add styling to equal key when pressed */
 			const element = document.querySelector('.equal');
 			element.classList.add('active');
+
 			handleEqual();
 		}
 	});
@@ -298,8 +302,17 @@ ce.addEventListener('click', () => {
 window.addEventListener('keydown', (e) => {
 	if (e.key == 'Delete')
 	{
+		/* Add styling to CE key when pressed */
+		const element = document.querySelector('.ce');
+		element.classList.add('active');
+
 		handleCE();
 	}
+});
+/* Remove the styling given to CE key when released */
+window.addEventListener('keyup', (e) => {
+	const element = document.querySelector('.ce');
+	element.classList.remove('active');
 });
 
 c.addEventListener('click', () => {
