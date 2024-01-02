@@ -129,10 +129,10 @@ function receiveInput(character) {
 }
 
 /**
- * Captures mouse clicks on number buttons and stores selected (clicked) data
+ * Captures mouse clicks on number buttons and stores selected (clicked) data.
+ * The event listener is applied to number buttons from 0 to 9 and decimal point button.
  */
 function listenForOperandClick() {
-	// The event listener is applied to number buttons from 0 to 9 and decimal point button
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
             receiveInput(numberButton.textContent);
@@ -259,7 +259,6 @@ function handleOperator(operator) {
 function listenForOperatorClick() {
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
-			// Pass the received operator to be handled
             handleOperator(operator);
         })
     });
@@ -391,14 +390,14 @@ function listenForEqualClick() {
 function listenForEqualKeyDown() {
 	window.addEventListener('keydown', (e) => {
 		if (e.key == '=') {
-			/* Add styling to equal key when pressed */
+			// Add styling to equal key when pressed
 			const element = document.querySelector('.equal');
 			element.classList.add('active');
 
 			handleEqual();
 		}
 	});
-	/* Remove styling given to equal key when released */
+	// Remove styling given to equal key when released
 	window.addEventListener('keyup', (e) => {
 		const element = document.querySelector('.equal');
 		element.classList.remove('active');
