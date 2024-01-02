@@ -100,12 +100,21 @@ function operate(operator, n1, n2) {
  * @param {string} character - A number from 0 to 9, or a decimal point
  */
 function receiveInput(character) {
+	// If the last operation was division by zero
+	if (result.textContent == "Cannot divide by zero") {
+		input = character;
+		equation.textContent = character;
+		result.textContent = '';
+		storedValue = undefined;
+		signThen = undefined;
+		signNow = undefined;
+	}
 	// Prevent inputting two decimal points in the same number
-	if (input.includes('.') && character === '.') {
-		input = input;
+	else if (input.includes('.') && character === '.') {
+		//Do nothing
 	}
 	// When the equation is full and a result is displayed, start over
-	else if (/[0-9]+ [^0-9] [0-9]+/.test(equation.textContent) && result.textContent !== '') {
+	else if (equation.textContent.split(' ')[2] !== '' && result.textContent !== '') {
 		result.textContent = '';
 		storedValue = undefined;
 		input = character;
@@ -138,8 +147,7 @@ function listenForOperandKeyDown() {
 	const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 	window.addEventListener('keydown', (e) => {
-		if (numbers.includes(e.key))
-		{
+		if (numbers.includes(e.key)) {
 			receiveInput(e.key);
 
 			// Add styling to a key when pressed
@@ -174,39 +182,74 @@ function listenForOperandKeyDown() {
  * @param {string} operator - An operator: +, -, *, ÷ or %
  */
 function handleOperator(operator) {
-	if (storedValue !== undefined && storedValue !== +input && input !== ''
-			|| storedValue === +input) {
-				// Example: displayed equation is "1 + 2" or "2 + 2" and an operator is clicked
-                signNow = operator.textContent;
-                storedValue = operate(signThen, storedValue, +input);
-                equation.textContent = storedValue + ' ' + signNow + ' ';
-                input = '';
-                signThen = signNow;
-            }
-            else if (/[0-9]+ [^0-9] [0-9]+/.test(equation.textContent) && result.textContent !== '') {
-				// Example: displayed equation is "3 + 2" and "=" was clicked before the operator
-                equation.textContent = result.textContent + ' ' + operator.textContent + ' ';
-                storedValue = +result.textContent;
-                result.textContent = '';
-                signThen = operator.textContent;
-            }
-            else if (equation.textContent.split(' ')[2] === '') {
-				// When the user wants to change the selected operator 
-				// Example: displayed equation is "3 + "
-                equation.textContent = equation.textContent.replace(/ [^0-9]/, ' ' + operator.textContent);
-                signThen = operator.textContent;
-            }
-            else if (storedValue !== undefined && input === '') {
-                signThen = operator.textContent;
-                equation.textContent += ' ' + operator.textContent + ' ';
-            }
-            else {
-				// When there's only one number and no operator in the equation
-                equation.textContent += ' ' + operator.textContent + ' ';
-                storedValue = +input;
-                signThen = operator.textContent;
-                input = '';
-            }
+	// If the last operation was division by zero
+	if (result.textContent == "Cannot divide by zero") {
+		//Do nothing
+	}
+	// When the input is just a decimal point
+	else if (input === '.') {
+		if (equation.textContent == '.') {
+			storedValue = (storedValue === undefined) ? 0 : storedValue;
+			equation.textContent = equation.textContent.replace(/./, '0');
+			equation.textContent += ' ' + operator.textContent + ' ';
+			signThen = operator.textContent;
+			input = '';
+		}
+		// Example: displayed equation is "1 + ."
+		else if (equation.textContent.split(' ')[2] === '.') {
+			input = '0';
+			storedValue = (storedValue === undefined) ? 0 : storedValue;
+			equation.textContent = equation.textContent.replace(/ [.]/, ' 0');
+			signNow = operator.textContent;
+			if (signThen == '÷' || signThen == '%') {
+				result.textContent = "Cannot divide by zero";
+			}
+			else {
+				storedValue = operate(signThen, storedValue, +input);
+				equation.textContent = storedValue + ' ' + signNow + ' ';
+				signThen = signNow;
+				input = '';
+			}
+		}
+	}
+	// When the user wants to change the selected operator 
+	// Example: displayed equation is "3 +"
+	else if (equation.textContent.split(' ')[1] != '' && equation.textContent.split(' ')[2] === '') {
+		equation.textContent = equation.textContent.replace(/ [^0-9]/, ' ' + operator.textContent);
+		signThen = operator.textContent;
+	}
+	// Example: displayed equation is "1 + 2" or "2 + 2" and an operator is clicked
+	else if ((storedValue !== undefined && storedValue !== +input && input !== '') || storedValue === +input) {
+		signNow = operator.textContent;
+		if ((equation.textContent.split(' ')[1] == '÷' || equation.textContent.split(' ')[1] == '%')
+		&& input == '0') {
+			result.textContent = "Cannot divide by zero";
+		}
+		else {
+			storedValue = operate(signThen, storedValue, +input);
+			equation.textContent = storedValue + ' ' + signNow + ' ';
+			signThen = signNow;
+			input = '';
+		}
+    }
+	// Example: displayed equation is "3 + 2" and "=" was clicked before the operator
+	else if (equation.textContent.split(' ')[1] !== '' && result.textContent !== '') {
+		equation.textContent = result.textContent + ' ' + operator.textContent + ' ';
+		storedValue = +result.textContent;
+		result.textContent = '';
+		signThen = operator.textContent;
+	}
+	else if (storedValue !== undefined && input === '') {
+		signThen = operator.textContent;
+		equation.textContent += ' ' + operator.textContent + ' ';
+	}
+	// When there's only one number and no operator in the equation
+	else {
+		equation.textContent += ' ' + operator.textContent + ' ';
+		storedValue = +input;
+		signThen = operator.textContent;
+		input = '';
+	}
 }
 
 /**
@@ -230,39 +273,33 @@ function listenForOperatorKeyDown() {
 	const currentOperators = ['+', '-', '/', '*', '%'];
 
 	window.addEventListener('keydown', (e) => {
-		if (currentOperators.includes(e.key))
-		{
+		if (currentOperators.includes(e.key)) {
 			// Create a dummy element and make the operator be its text content,
 			// because handleOperator function takes an element as a parameter
 			const dummyElement = document.createElement('div');
-			if (e.key == '*')
-			{
+			if (e.key == '*') {
 				dummyElement.textContent = '×';
 
 				// Add styling to key when pressed
 				const element = document.querySelector('.multiplication');
 				element.classList.add('active');
 			}
-			else if (e.key == '/')
-			{
+			else if (e.key == '/') {
 				dummyElement.textContent = '÷';
 				const element = document.querySelector('.division');
 				element.classList.add('active');
 			}
-			else if (e.key == '-')
-			{
+			else if (e.key == '-') {
 				dummyElement.textContent = '–';
 				const element = document.querySelector('.subtraction');
 				element.classList.add('active');
 			}
-			else if (e.key == '%')
-			{
+			else if (e.key == '%') {
 				dummyElement.textContent = e.key;
 				const element = document.querySelector('.remainder');
 				element.classList.add('active');
 			}
-			else
-			{
+			else {
 				dummyElement.textContent = e.key;
 				const element = document.querySelector('.addition');
 				element.classList.add('active');
@@ -273,28 +310,23 @@ function listenForOperatorKeyDown() {
 	});
 	// Remove styling given to keys when they're released
 	window.addEventListener('keyup', (e) => {
-		if (e.key == '*')
-			{
+		if (e.key == '*') {
 				const element = document.querySelector('.multiplication');
 				element.classList.remove('active');
 			}
-			else if (e.key == '/')
-			{
+			else if (e.key == '/') {
 				const element = document.querySelector('.division');
 				element.classList.remove('active');
 			}
-			else if (e.key == '-')
-			{
+			else if (e.key == '-') {
 				const element = document.querySelector('.subtraction');
 				element.classList.remove('active');
 			}
-			else if (e.key == '%')
-			{
+			else if (e.key == '%') {
 				const element = document.querySelector('.remainder');
 				element.classList.remove('active');
 			}
-			else if (e.key == '+')
-			{
+			else if (e.key == '+') {
 				const element = document.querySelector('.addition');
 				element.classList.remove('active');
 			}
@@ -312,17 +344,33 @@ function handleEqual() {
 	}
 	// Do nothing if there's no input
 	else if (storedValue !== undefined && input === '') {
-		input = '';
+		//Do nothing
 	}
 	// Do nothing if there's no input and no stored value
 	else if (storedValue === undefined && input === '') {
-		storedValue = undefined;
+		//Do nothing
+	}
+	// Example: displayed equation is "1 + ."
+	else if (equation.textContent.split(' ')[2] === '.') {
+		if (signThen == '÷' || signThen == '%') {
+			result.textContent = "Cannot divide by zero";
+		}
+		else {
+			result.textContent = operate(signThen, storedValue, 0);
+			storedValue = +result.textContent;
+			input = '';
+		}
 	}
 	// When the displayed equation looks something like: "2 + 5" and = is pressed
 	else {
-		result.textContent = operate(signThen, storedValue, +input);
-		storedValue = +result.textContent;
-		input = '';
+		if ((signThen == '÷' || signThen == '%') && input === '0') {
+			result.textContent = "Cannot divide by zero";
+		}
+		else {
+			result.textContent = operate(signThen, storedValue, +input);
+			storedValue = +result.textContent;
+			input = '';
+		}
 	}
 }
 
@@ -342,8 +390,7 @@ function listenForEqualClick() {
  */
 function listenForEqualKeyDown() {
 	window.addEventListener('keydown', (e) => {
-		if (e.key == '=')
-		{
+		if (e.key == '=') {
 			/* Add styling to equal key when pressed */
 			const element = document.querySelector('.equal');
 			element.classList.add('active');
@@ -362,8 +409,7 @@ function listenForEqualKeyDown() {
  * Clears the input when the CE button is clicked or
  * when the delete key is pressed.
  */
-function handleCE()
-{
+function handleCE() {
 	// If = was pressed right before CE and a
 	// result is displayed, do thing.
 	if (result.textContent !== '') {
@@ -406,8 +452,7 @@ ce.addEventListener('click', () => {
 // Clear the recent input when delete key is pressed,
 // as well as add styling to the CE button
 window.addEventListener('keydown', (e) => {
-	if (e.key == 'Delete')
-	{
+	if (e.key == 'Delete') {
 		/* Add styling to CE key when pressed */
 		const element = document.querySelector('.ce');
 		element.classList.add('active');
