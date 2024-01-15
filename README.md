@@ -47,14 +47,11 @@ This on-screen calculator provides operations for all of the basic math operator
 
 ## Authors
 
-Contributors names and contact info
-
 - Mayada Saeed - [`Maddily`](https://github.com/Maddily) - [`LinkedIn Profile`](https://www.linkedin.com/in/mayadase/)
 
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
 * The favicon used here is from https://icon-icons.com/ under license: https://creativecommons.org/licenses/by/4.0/legalcode.
 * The background image is from www.pixabay.com.
 * The digital7 font is from www.fontspace.com.
