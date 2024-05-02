@@ -103,7 +103,9 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     border: 2px solid #88795e;
     width: 96%;
     height: 90%;
-    background-color: #ffe1af;
+    background-color: #b49765;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.7),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.4);
     font-family: digital7, sans-serif;
     font-size: 2rem;
     padding: 0 0.5rem 0 0.5rem;
@@ -136,7 +138,9 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
     border: 2px solid #998969;
     width: 35%;
     height: 2rem;
-    background-color: #ffe5af;
+    background-color: #b49765;
+    box-shadow: inset 2.5px 2.5px 2.5px rgba(0, 0, 0, 0.7),
+              inset -1.5px -1.5px 1.5px rgba(255, 255, 255, 0.4);
     margin-left: 55%;
 }
 
