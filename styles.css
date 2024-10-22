@@ -18,6 +18,7 @@ html, body, .equation, .result, .buttons, .addition {
 body {
     background-image: url('images/bg.jpg');
     justify-content: space-around;
+    margin: 0;
 }
 
 body, .calculator, .display-background, .display, .equation, .result, .solar-cell-frame, .solar-cell, .buttons, .clear-buttons, .number-buttons, .number-buttons div, .operator-buttons div, .operator-buttons, footer {
