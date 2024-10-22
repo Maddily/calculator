@@ -45,9 +45,9 @@ This on-screen calculator provides operations for all of the basic math operator
 </p>
 
 
-## Authors
+## Author
 
-- Mayada Saeed - [`Maddily`](https://github.com/Maddily) - [`LinkedIn Profile`](https://www.linkedin.com/in/mayadase/)
+- Mayada Saeed
 
 
 ## Acknowledgments
