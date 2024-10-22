@@ -100,10 +100,10 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
 }
 
 .display {
-    border: 2px solid #88795e;
+    border: 2px solid #87857f;
     width: 96%;
     height: 90%;
-    background-color: #b49765;
+    background-color: #a29b8e;
     box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.7),
               inset -2px -2px 4px rgba(255, 255, 255, 0.4);
     font-family: digital7, sans-serif;
@@ -135,17 +135,17 @@ body, .calculator, .display-background, .solar-cell-frame, footer {
 }
 
 .solar-cell {
-    border: 1px solid #88795e;
+    border: 1px solid #87857f;
     width: 35%;
     height: 2rem;
-    background-color: #b49765;
+    background-color: #a29b8e;
     box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.7),
               inset -2px -2px 2px rgba(255, 255, 255, 0.4);
     margin-left: 55%;
 }
 
 .solar-cell-part {
-    border: 1px solid rgb(134, 118, 91);
+    border: 1px solid #797771;
 }
 
 .number-buttons div button, .remainder, .multiplication, .subtraction, .division {
